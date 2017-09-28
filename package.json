@@ -15,12 +15,13 @@
   },
   "dependencies": {
     "gluonjs": "^2.0.0-preview.4",
-    "overwebs-fonts": "^1.0.0-rc1",
-    "overwebs-button": "^0.0.1"
+    "overwebs-button": "^0.0.1",
+    "overwebs-fonts": "^1.0.0-rc1"
   },
   "scripts": {
     "build": "gulp",
     "dev": "gulp serve",
     "publish": "git add overwebs-login-page.js"
-  }
+  },
+  "version": "0.0.1"
 }
