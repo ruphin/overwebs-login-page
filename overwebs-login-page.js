@@ -3,10 +3,10 @@ import{GluonElement,html}from'../gluonjs/gluon.js';import'../overwebs-button/ove
     :host {
       display: flex;
       flex-flow: column;
-      position: relative;
-      overflow: auto;
-      width: 100vw;
-      height: 100vh;
+      position: fixed;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: flex-end;
       letter-spacing: calc(1 / 2560 * var(--overwebs-window-size, 1920px));
@@ -55,5 +55,5 @@ import{GluonElement,html}from'../gluonjs/gluon.js';import'../overwebs-button/ove
       <overwebs-button block big bigtext yellow id="loginButton" disabled><button type="submit">Login</button></overwebs-button>
       <overwebs-button block big bigtext yellow id="anonymousButton"><button type="submit">Anonymous</button></overwebs-button>
     </form>
-    `}constructor(){super(),this.loginValid=!1}connectedCallback(){super.connectedCallback(),this.$.input.addEventListener('input',()=>this._inputChanged()),this.$.form.addEventListener('submit',(a)=>{a.preventDefault(),this._login()})}get _anonymous(){return''===this.$.input.value||!this.$.input.validity.valid}_login(){if(this._anonymous)this.dispatchEvent(new CustomEvent('login',{detail:{anonymous:!0}}));else{let[a,b]=this.$.input.value.split('#');this.dispatchEvent(new CustomEvent('login',{detail:{userName:a,battleTag:`${a}#${b}`}}))}}_inputChanged(){this._anonymous?(this.$.loginButton.setAttribute('disabled',''),this.$.anonymousButton.removeAttribute('disabled')):(this.$.loginButton.removeAttribute('disabled'),this.$.anonymousButton.setAttribute('disabled',''))}}customElements.define(OverwebsLoginPage.is,OverwebsLoginPage);
+    `}constructor(){super(),this.loginValid=!1}connectedCallback(){super.connectedCallback(),this.$.input.addEventListener('input',()=>this._inputChanged()),this.$.form.addEventListener('submit',(a)=>{a.preventDefault(),this._login()})}get _anonymous(){return''===this.$.input.value||!this.$.input.validity.valid}_login(){if(this._anonymous)this.dispatchEvent(new CustomEvent('login',{detail:{anonymous:!0}}));else{let[a,b]=this.$.input.value.split('#');this.dispatchEvent(new CustomEvent('login',{detail:{userName:a,battleTag:b}}))}}_inputChanged(){this._anonymous?(this.$.loginButton.setAttribute('disabled',''),this.$.anonymousButton.removeAttribute('disabled')):(this.$.loginButton.removeAttribute('disabled'),this.$.anonymousButton.setAttribute('disabled',''))}}customElements.define(OverwebsLoginPage.is,OverwebsLoginPage);
 //# sourceMappingURL=overwebs-login-page.js.map

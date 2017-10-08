@@ -10,10 +10,10 @@ class OverwebsLoginPage extends GluonElement {
     :host {
       display: flex;
       flex-flow: column;
-      position: relative;
-      overflow: auto;
-      width: 100vw;
-      height: 100vh;
+      position: fixed;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: flex-end;
       letter-spacing: calc(1 / 2560 * var(--overwebs-window-size, 1920px));
@@ -89,7 +89,7 @@ class OverwebsLoginPage extends GluonElement {
       this.dispatchEvent(new CustomEvent('login', { detail: { anonymous: true } }));
     } else {
       let [userName, battleTag] = this.$.input.value.split('#');
-      this.dispatchEvent(new CustomEvent('login', { detail: { userName: userName, battleTag: `${userName}#${battleTag}` } }));
+      this.dispatchEvent(new CustomEvent('login', { detail: { userName: userName, battleTag: battleTag } }));
     }
   }
 
