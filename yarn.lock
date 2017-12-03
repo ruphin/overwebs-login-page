@@ -1334,9 +1334,9 @@ glogg@^1.0.0:
   dependencies:
     sparkles "^1.0.0"
 
-gluonjs@^2.0.0-preview.4:
-  version "2.0.0-preview.4"
-  resolved "https://registry.yarnpkg.com/gluonjs/-/gluonjs-2.0.0-preview.4.tgz#38d8587ec6267438cba9573e2ff6bd547d855e45"
+gluonjs@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gluonjs/-/gluonjs-2.0.2.tgz#8b0228a4c2ca9b2c2dd35adb042bb9aaa4c80495"
   dependencies:
     lit-html "^0.6.0"
 
@@ -2250,22 +2250,22 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-overwebs-button@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/overwebs-button/-/overwebs-button-0.0.1.tgz#65bc7a61932cf71220ed0fe86272af84c8d4d393"
+overwebs-button@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/overwebs-button/-/overwebs-button-1.0.0.tgz#e7f6ed64ec32cbfd49141a36eaeeef85f876a3f1"
   dependencies:
-    gluonjs "^2.0.0-preview.4"
-    overwebs-fonts "^1.0.0-rc1"
+    gluonjs "^2.0.2"
+    overwebs-fonts "^1.0.0"
 
-overwebs-fonts@^1.0.0-rc1:
-  version "1.0.0-rc1"
-  resolved "https://registry.yarnpkg.com/overwebs-fonts/-/overwebs-fonts-1.0.0-rc1.tgz#e0ec9909f42b62ee0cf7ac78b9fdd4278e2695b6"
+overwebs-fonts@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/overwebs-fonts/-/overwebs-fonts-1.0.0.tgz#004ec5e8df8411986dc72551d47d1514615911dd"
 
-overwebs-loading-spinner@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/overwebs-loading-spinner/-/overwebs-loading-spinner-0.0.2.tgz#36c6ec399268335115307b80faa90a887fe71b14"
+overwebs-loading-spinner@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/overwebs-loading-spinner/-/overwebs-loading-spinner-1.0.0.tgz#9bd40552def1799bcf1750a8531c5a05fd874cbf"
   dependencies:
-    gluonjs "^2.0.0-preview.4"
+    gluonjs "^2.0.2"
 
 parse-filepath@^1.0.1:
   version "1.0.1"
