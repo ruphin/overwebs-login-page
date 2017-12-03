@@ -1,10 +1,10 @@
 import { GluonElement, html } from '../gluonjs/gluon.js';
 import '../overwebs-button/overwebs-button.js';
+import '../overwebs-loading-spinner/overwebs-loading-spinner.js';
 import '../overwebs-fonts/overwebs-fonts.js';
 
 class OverwebsLoginPage extends GluonElement {
   get template() {
-    // TODO: Migrate to --overwebs-window-size
     return html`
     <style>
     :host {
@@ -13,7 +13,7 @@ class OverwebsLoginPage extends GluonElement {
       position: fixed;
       overflow: hidden;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       align-items: center;
       justify-content: flex-end;
       letter-spacing: calc(1 / 2560 * var(--overwebs-window-size, 1920px));
@@ -24,7 +24,10 @@ class OverwebsLoginPage extends GluonElement {
       flex-flow: column;
       margin-bottom: calc(88 / 2560 * var(--overwebs-window-size, 1920px));
     }
-    label {
+    overwebs-loading-spinner {
+      margin-bottom: calc(22 / 2560 * var(--overwebs-window-size, 1920px));
+    }
+    label, .loadingMessage {
       margin-bottom: calc(14 / 2560 * var(--overwebs-window-size, 1920px));
       font-family: overwebs-futura;
       font-size: calc(24 / 2560 * var(--overwebs-window-size, 1920px));
@@ -32,6 +35,9 @@ class OverwebsLoginPage extends GluonElement {
       text-align: center;
       text-transform: uppercase;
       pointer-events: none;
+    }
+    overwebs-button, input {
+      width: 100%;
     }
     #input {
       height: calc(66 / 2560 * var(--overwebs-window-size, 1920px));
@@ -55,12 +61,29 @@ class OverwebsLoginPage extends GluonElement {
     #loginButton {
       margin-bottom: calc(47 / 2560 * var(--overwebs-window-size, 1920px));
     }
+    :host(:not([logging-in])) .loggingIn, :host([logging-in]) .notLoggingIn {
+      display: none;
+    }
+
+    .loggingIn, .notLoggingIn {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+
     </style>
     <form id="form" action="/main" method="get">
-      <label for="input">Username</label>
-      <input type="text" id="input" pattern="^[a-zA-Z]+(#[0-9]+)?$" autofocus></input>
-      <overwebs-button block big bigtext yellow id="loginButton" disabled><button type="submit">Login</button></overwebs-button>
-      <overwebs-button block big bigtext yellow id="anonymousButton"><button type="submit">Anonymous</button></overwebs-button>
+      <div class="loggingIn">
+        <overwebs-loading-spinner white size="64"></overwebs-loading-spinner>
+        <div class="loadingMessage">Connecting...</div>
+        <overwebs-button block big bigtext yellow id="cancelButton"><button type="submit">Cancel</button></overwebs-button>
+      </div>
+      <div class="notLoggingIn">
+        <label for="input">Username</label>
+        <input type="text" id="input" pattern="^[a-zA-Z]+(#[0-9]+)?$" autofocus autocomplete="off"></input>
+        <overwebs-button block big bigtext yellow id="loginButton" disabled><button type="submit">Login</button></overwebs-button>
+        <overwebs-button block big bigtext yellow id="anonymousButton"><button type="submit">Anonymous</button></overwebs-button>
+      </div>
     </form>
     `;
   }
@@ -70,14 +93,37 @@ class OverwebsLoginPage extends GluonElement {
     this.loginValid = false;
   }
 
+  static get observedAttributes() {
+    return ['logging-in'];
+  }
+
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (attr === 'logging-in') {
+      this.render();
+    }
+  }
+
+  get loggingIn() {
+    return this.getAttribute('logging-in') !== null;
+  }
+
+  set loggingIn(value) {
+    if (value) {
+      this.setAttribute('logging-in', '');
+    } else {
+      this.removeAttribute('logging-in');
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
-    this.$.input.addEventListener('input', () => this._inputChanged());
-
     this.$.form.addEventListener('submit', e => {
+      console.log('SUBMIT');
       e.preventDefault();
       this._login();
     });
+
+    this.addEventListener('input', () => this._inputChanged());
   }
 
   get _anonymous() {
@@ -85,11 +131,18 @@ class OverwebsLoginPage extends GluonElement {
   }
 
   _login() {
-    if (this._anonymous) {
-      this.dispatchEvent(new CustomEvent('login', { detail: { anonymous: true } }));
+    console.log('test');
+    if (this.loggingIn) {
+      this.dispatchEvent(new Event('cancelLogin'));
+      this.removeAttribute('logging-in');
     } else {
-      let [userName, battleTag] = this.$.input.value.split('#');
-      this.dispatchEvent(new CustomEvent('login', { detail: { userName: userName, battleTag: battleTag } }));
+      if (this._anonymous) {
+        this.dispatchEvent(new CustomEvent('login', { detail: { anonymous: true } }));
+      } else {
+        let [userName, battleTag] = this.$.input.value.split('#');
+        this.dispatchEvent(new CustomEvent('login', { detail: { userName: userName, battleTag: battleTag } }));
+      }
+      this.setAttribute('logging-in', '');
     }
   }
 

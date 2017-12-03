@@ -16,7 +16,8 @@
   "dependencies": {
     "gluonjs": "^2.0.0-preview.4",
     "overwebs-button": "^0.0.1",
-    "overwebs-fonts": "^1.0.0-rc1"
+    "overwebs-fonts": "^1.0.0-rc1",
+    "overwebs-loading-spinner": "^0.0.2"
   },
   "scripts": {
     "build": "gulp",

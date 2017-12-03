@@ -2261,6 +2261,12 @@ overwebs-fonts@^1.0.0-rc1:
   version "1.0.0-rc1"
   resolved "https://registry.yarnpkg.com/overwebs-fonts/-/overwebs-fonts-1.0.0-rc1.tgz#e0ec9909f42b62ee0cf7ac78b9fdd4278e2695b6"
 
+overwebs-loading-spinner@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/overwebs-loading-spinner/-/overwebs-loading-spinner-0.0.2.tgz#36c6ec399268335115307b80faa90a887fe71b14"
+  dependencies:
+    gluonjs "^2.0.0-preview.4"
+
 parse-filepath@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parse-filepath/-/parse-filepath-1.0.1.tgz#159d6155d43904d16c10ef698911da1e91969b73"
