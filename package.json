@@ -2,17 +2,10 @@
   "name": "overwebs-login-page",
   "description": "The Overwebs App login page",
   "main": "overwebs-login-page.js",
+  "type": "module",
   "repository": "git@github.com:ruphin/overwebs-login-page.git",
   "author": "Goffert van Gool",
   "license": "MIT",
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-minify": "^0.2.0",
-    "browser-sync": "^2.18.13",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-sourcemaps": "^2.6.1"
-  },
   "dependencies": {
     "gluonjs": "^2.0.2",
     "overwebs-button": "^1.0.0",
@@ -20,9 +13,15 @@
     "overwebs-loading-spinner": "^1.0.0"
   },
   "scripts": {
-    "build": "gulp",
-    "dev": "gulp serve",
-    "publish": "git add overwebs-login-page.js"
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run --passWithNoTests",
+    "version": "npm run build && git add overwebs-login-page.js overwebs-login-page.js.map",
+    "prepublishOnly": "npm run build"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "devDependencies": {
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
 }

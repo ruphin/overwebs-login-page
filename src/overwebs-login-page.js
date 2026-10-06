@@ -1,7 +1,7 @@
-import { GluonElement, html } from '../gluonjs/gluon.js';
-import '../overwebs-button/overwebs-button.js';
-import '../overwebs-loading-spinner/overwebs-loading-spinner.js';
-import '../overwebs-fonts/overwebs-fonts.js';
+import { GluonElement, html } from 'gluonjs/gluon.js';
+import 'overwebs-button/overwebs-button.js';
+import 'overwebs-loading-spinner/overwebs-loading-spinner.js';
+import 'overwebs-fonts/overwebs-fonts.js';
 
 class OverwebsLoginPage extends GluonElement {
   get template() {
